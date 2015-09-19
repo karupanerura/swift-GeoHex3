@@ -1,0 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'GeoHex3_Example', :exclusive => true do
+  pod "GeoHex3", :path => "../"
+end
+
+target 'GeoHex3_Tests', :exclusive => true do
+  pod "GeoHex3", :path => "../"
+end

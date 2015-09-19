@@ -1,0 +1,14 @@
+PODS:
+  - GeoHex3 (0.1.0)
+
+DEPENDENCIES:
+  - GeoHex3 (from `../`)
+
+EXTERNAL SOURCES:
+  GeoHex3:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GeoHex3: 0361f899dfc73ee6266e8dc1ba80ac8f608713e4
+
+COCOAPODS: 0.38.2
