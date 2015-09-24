@@ -50,6 +50,15 @@ extension GeoHex3 {
     }
 }
 
+extension GeoHex3 : Equatable {}
+public func ==(lhs: GeoHex3, rhs: GeoHex3) -> Bool {
+    return lhs.code == rhs.code
+}
+
+extension GeoHex3 : Hashable {
+    public var hashValue: Int { return self.code.hashValue }
+}
+
 extension GeoHex3 {
     final public class Polygon {
         public let top    : LocationPair
