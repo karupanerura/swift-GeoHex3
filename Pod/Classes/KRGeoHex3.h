@@ -24,5 +24,6 @@ typedef NSArray<geohex3_location_dict_t *>  geohex3_locations_t;
 - (double)getLat;
 - (double)getLng;
 - (nonnull geohex3_locations_t *)getPolygon;
++ (double)getHexSize:(const NSUInteger)level;
 
 @end

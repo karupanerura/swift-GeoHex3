@@ -112,4 +112,9 @@
     ];
 }
 
++ (double) getHexSize:(const NSUInteger)level
+{
+    return (double)geohex_hexsize(level);
+}
+
 @end

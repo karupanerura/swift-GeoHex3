@@ -28,6 +28,10 @@ public class GeoHex3 {
     public convenience init (location: CLLocationCoordinate2D, level: UInt) {
         self.init(lat: location.latitude, lng: location.longitude, level: level)
     }
+
+    public func getHexSize(level: UInt) -> Double {
+        return KRGeoHex3.getHexSize(level)
+    }
 }
 
 extension GeoHex3 {
