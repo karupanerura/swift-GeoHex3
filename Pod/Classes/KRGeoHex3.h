@@ -11,7 +11,7 @@
 typedef NSDictionary<NSString *,NSNumber *> geohex3_location_dict_t;
 typedef NSArray<geohex3_location_dict_t *>  geohex3_locations_t;
 
-@interface GeoHex3 : NSObject
+@interface KRGeoHex3 : NSObject
 
 - (nonnull instancetype)initWithX:(const NSInteger)x y:(const NSInteger)y level:(const NSUInteger)level;
 - (nonnull instancetype)initWithLat:(const double)lat lng:(const double)lng level:(const NSUInteger)level;
@@ -23,6 +23,6 @@ typedef NSArray<geohex3_location_dict_t *>  geohex3_locations_t;
 - (NSInteger)getY;
 - (double)getLat;
 - (double)getLng;
-- (nonnull geohex3_locations_t *)getRawPolygon;
+- (nonnull geohex3_locations_t *)getPolygon;
 
 @end

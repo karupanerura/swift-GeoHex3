@@ -9,35 +9,56 @@
 import Foundation
 import CoreLocation
 
-extension GeoHex3 {
-    var x     : Int    { return self.getX()     }
-    var y     : Int    { return self.getY()     }
-    var lat   : Double { return self.getLat()   }
-    var lng   : Double { return self.getLng()   }
-    var size  : Double { return self.getSize()  }
-    var level : UInt   { return self.getLevel() }
-    var code  : String { return self.getCode()  }
-}
+public class GeoHex3 {
+    private let geohex : KRGeoHex3
+    private var polygonCache : Polygon?
 
-extension GeoHex3 {
-    var location : CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(self.getLat(), self.getLng())
+    public init (x: Int, y: Int, level: UInt) {
+        self.geohex = KRGeoHex3(x: x, y: y, level: level)
+    }
+
+    public init (lat: Double, lng: Double, level: UInt) {
+        self.geohex = KRGeoHex3(lat: lat, lng: lng, level: level)
+    }
+
+    public init (code: String) {
+        self.geohex = KRGeoHex3(code: code)
+    }
+
+    public convenience init (location: CLLocationCoordinate2D, level: UInt) {
+        self.init(lat: location.latitude, lng: location.longitude, level: level)
     }
 }
 
 extension GeoHex3 {
-    final class Polygon {
-        let top    : LocationPair
-        let middle : LocationPair
-        let bottom : LocationPair
+    public var x     : Int    { return self.geohex.getX()     }
+    public var y     : Int    { return self.geohex.getY()     }
+    public var lat   : Double { return self.geohex.getLat()   }
+    public var lng   : Double { return self.geohex.getLng()   }
+    public var size  : Double { return self.geohex.getSize()  }
+    public var level : UInt   { return self.geohex.getLevel() }
+    public var code  : String { return self.geohex.getCode()  }
+}
 
-        struct LocationPair {
-            let left  : CLLocationCoordinate2D
-            let rigth : CLLocationCoordinate2D
+extension GeoHex3 {
+    public var location : CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(self.geohex.getLat(), self.geohex.getLng())
+    }
+}
+
+extension GeoHex3 {
+    final public class Polygon {
+        public let top    : LocationPair
+        public let middle : LocationPair
+        public let bottom : LocationPair
+
+        public struct LocationPair {
+            public let left  : CLLocationCoordinate2D
+            public let rigth : CLLocationCoordinate2D
         }
 
         private init (geohex : GeoHex3) {
-            let polygon : [[String:NSNumber]] = geohex.getRawPolygon()
+            let polygon : [[String:NSNumber]] = geohex.geohex.getPolygon()
             assert(polygon.count == 6)
 
             let locations  : [CLLocationCoordinate2D] = polygon.map {
@@ -58,7 +79,13 @@ extension GeoHex3 {
         }
     }
 
-    var polygon : Polygon {
-        return Polygon(geohex: self)
+    public var polygon : Polygon {
+        if let polygon : Polygon = polygonCache {
+            return polygon
+        }
+
+        let polygon : Polygon = Polygon(geohex: self)
+        self.polygonCache = polygon
+        return polygon
     }
 }
