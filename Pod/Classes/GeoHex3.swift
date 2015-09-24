@@ -29,7 +29,7 @@ public class GeoHex3 {
         self.init(lat: location.latitude, lng: location.longitude, level: level)
     }
 
-    public func getHexSize(level: UInt) -> Double {
+    public class func getHexSize(level: UInt) -> Double {
         return KRGeoHex3.getHexSize(level)
     }
 }
