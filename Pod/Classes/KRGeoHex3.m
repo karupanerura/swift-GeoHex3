@@ -8,6 +8,7 @@
 
 #import "KRGeoHex3.h"
 #import "lib/geohex3.h"
+#import <stdint.h>
 
 @interface KRGeoHex3 () {
     @private
@@ -17,7 +18,7 @@
 
 @implementation KRGeoHex3
 
-- (nonnull instancetype)initWithX:(const NSInteger)x y:(const NSInteger)y level:(const NSUInteger)level
+- (nonnull instancetype)initWithX:(const int64_t)x y:(const int64_t)y level:(const NSUInteger)level
 {
     self = [super init];
     if (self) {
@@ -61,12 +62,12 @@
     return [NSString stringWithCString:geohex.code encoding:NSUTF8StringEncoding];
 }
 
-- (NSInteger)getX
+- (int64_t)getX
 {
     return geohex.coordinate.x;
 }
 
-- (NSInteger)getY
+- (int64_t)getY
 {
     return geohex.coordinate.y;
 }

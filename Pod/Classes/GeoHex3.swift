@@ -13,7 +13,7 @@ public class GeoHex3 {
     private let geohex : KRGeoHex3
     private var polygonCache : Polygon?
 
-    public init (x: Int, y: Int, level: UInt) {
+    public init (x: Int64, y: Int64, level: UInt) {
         self.geohex = KRGeoHex3(x: x, y: y, level: level)
     }
 
@@ -35,8 +35,8 @@ public class GeoHex3 {
 }
 
 extension GeoHex3 {
-    public var x     : Int    { return self.geohex.getX()     }
-    public var y     : Int    { return self.geohex.getY()     }
+    public var x     : Int64  { return self.geohex.getX()     }
+    public var y     : Int64  { return self.geohex.getY()     }
     public var lat   : Double { return self.geohex.getLat()   }
     public var lng   : Double { return self.geohex.getLng()   }
     public var size  : Double { return self.geohex.getSize()  }
