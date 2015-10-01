@@ -1,0 +1,3 @@
+[submodule "author/deps/c-geohex3"]
+	path = author/deps/c-geohex3
+	url = git://github.com/karupanerura/c-geohex3.git
